@@ -9,7 +9,7 @@
       "Формула: 6 + 10 - 5 и т.д.
       Результат: 11"
 */
-      
+    
 var writeNumber = prompt('Напишите число:');
 
 var questionAddition = prompt('Сколько прибавить?');    
@@ -25,7 +25,7 @@ var questionDivision = prompt('Сколько разделить?');
 var sumTotal = sumMultiplication / questionDivision;
 
 alert(
-    'Формула: ' + writeNumber + ' + ' + questionAddition + ' - ' + questionSubtract + ' * ' + questionMultiplication + ' / ' + questionDivision + '  Результа: ' + sumTotal,
+    'Формула: ' + writeNumber + ' + ' + questionAddition + ' - ' + questionSubtract + ' * ' + questionMultiplication + ' / ' + questionDivision + '  Результат: ' + sumTotal,
 );
 
 
@@ -56,4 +56,29 @@ if (password == 'Чёрный Властелин') {
 } else {
     alert('Пароль неверен');
 }
+
+/*  Задание 3:
+    Переписать if..else с использованием нескольких тернарных операторов:
+
+var login = prompt('Логин');
+var message;
+
+if (login === 'Вася') {
+    console.log(message = 'Привет');
+} else if (login === 'Директор') {
+    console.log(message = 'Здравствуйте');
+} else if (login === '') {
+    console.log(message = 'Нет логина');
+} else {
+    console.log(message = '');
+}
+*/
+
+var login = prompt('Логин');
+var message;
+
+message = (login === 'Вася') ? console.log('Привет') :
+    (login === 'Директор') ? console.log('Здравствуйте') :
+    (login === '') ? console.log('Нет логина') : console.log('') ;
+
 
