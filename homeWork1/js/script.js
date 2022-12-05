@@ -36,7 +36,11 @@ var i = i - e;
 console.log(i);
 console.log(e);
 
+// a = o / b = t ------------------------------------ //
 
+let o = 10;
+    t = 3.8;
 
+[o, t] = [t, o];
 
 
