@@ -53,19 +53,27 @@ for (var i = 1; i < 11; i++) {
     осуществлять именно из уже сформированного массива) 
 */
 
-var userLogin = +prompt('Напишите число:');
-if (isNaN(userLogin) || userLogin == 0) {} 
+var numberOne = prompt('Напишите число:');
+if (isNaN(numberOne) || numberOne == '' || numberOne == null) {} 
 else {
-    var userEmail = +prompt('Напишите число 2:');
-    if (isNaN(userEmail) || userEmail == 0) {} 
+    var numberTwo = prompt('Напишите число 2:');
+    if (isNaN(numberTwo) || numberTwo == '' || numberTwo == null) {} 
     else {
-        var userPassword = +prompt('Напишите число 3:');
+        var numberThree = prompt('Напишите число 3:');
+        if (isNaN(numberThree) || numberThree == '' || numberThree == null) {} 
+        else {
+            var data = [];
+            data.push(+numberOne, +numberTwo, +numberThree);
+            console.log(data); 
+            alert(data[0] + data[1] + data[2]);
+        }
     }
 }
 
-var data = [];
 
-data.push(userLogin, userEmail, userPassword);
-console.log(data);
 
-// В процессе решения ......
+
+
+
+
+
