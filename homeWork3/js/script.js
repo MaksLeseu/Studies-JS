@@ -54,22 +54,21 @@ for (var i = 1; i < 11; i++) {
 */
 
 var numberOne = prompt('Напишите число:');
-if (isNaN(numberOne) || numberOne == '' || numberOne == null) {} 
-else {
+
+if (!isNaN(numberOne) && numberOne !== '' && numberOne !== null) {
     var numberTwo = prompt('Напишите число 2:');
-    if (isNaN(numberTwo) || numberTwo == '' || numberTwo == null) {} 
-    else {
-        var numberThree = prompt('Напишите число 3:');
-        if (isNaN(numberThree) || numberThree == '' || numberThree == null) {} 
-        else {
-            var data = [];
-            data.push(+numberOne, +numberTwo, +numberThree);
-            console.log(data); 
-            alert(data[0] + data[1] + data[2]);
-        }
-    }
+} 
+
+if (!isNaN(numberTwo) && numberTwo !== '' && numberTwo !== null) {
+    var numberThree = prompt('Напишите число 3:');
 }
 
+if (!isNaN(numberThree) && numberThree !== '' && numberThree !== null) {
+    var data = [];
+    data.push(+numberOne, +numberTwo, +numberThree);
+    console.log(data); 
+    alert(data[0] + data[1] + data[2]);
+}
 
 
 
