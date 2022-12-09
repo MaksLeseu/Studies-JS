@@ -14,7 +14,10 @@ console.log(styles);
 styles.push("Рок-н-Ролл");
 console.log(styles);
 
-styles[1] = "Классика";
+var el = styles.pop();
+styles.pop();
+styles.push("Классика");
+styles.push(el);
 console.log(styles);
 
 alert(styles.shift());
@@ -45,6 +48,15 @@ for (var i = 1; i < 11; i++) {
     } 
 }
 
+//---------------------------------------//
+
+for (var i = 1; i < 11; i++) {
+    if (i % 2 !== 0) continue;
+    alert(i);
+}
+
+
+
 /* Задание 3:
     Написать код, который:
     запрашивает по очереди значения при помощи prompt и сохраняет их в массиве,
@@ -69,7 +81,6 @@ if (!isNaN(numberThree) && numberThree !== '' && numberThree !== null) {
     console.log(data); 
     alert(data[0] + data[1] + data[2]);
 }
-
 
 
 
