@@ -3,7 +3,7 @@
 /* Задание 1:
     Создать функцию isEmpty(obj), которая возвращает true, если в объекте нет свойств и false – если хоть одно
     свойство есть. 
-*/
+
 
 var arr = {};
 
@@ -28,7 +28,7 @@ alert( isEmpty(arr) );
     иначе говоря, умножает x на себя n раз и возвращает результат.
     Запросить у пользователя x и n, а затем вывести результат pow(x, n).
     В этой задаче функция обязана поддерживать только натуральные значения n, т.е. целые от 1 и выше.
-*/
+
 
 var valueX = +prompt('Напишите число:');
 var valueN = +prompt('Напишите число:');
@@ -65,7 +65,7 @@ function pow (x, n) {
     Ответить на вопросы в комментариях:
       Какой вариант решения самый быстрый? Самый медленный? Почему?
       Можно ли при помощи рекурсии посчитать sumTo(100000)? Если нет, то почему? 
-*/
+
 
 
 // --- С использованием цикла --- //
@@ -136,6 +136,67 @@ alert (sumTo (4));
         [9, []],
         1, 8
       ]
+
+
+      var str = String(brr);
+        for (var j = 0; j < str[index]; j++) {
+            
+            var num = parseInt(str);
+            console.log('В цикле: ' + num);
+        }
+        // (1) Хотел перевести все в строку, в том числе вложенный массив. И после перевести через parseInt в цикле в числа,
+        // так как во вложенном массиве числа шли через запятую. 
 */
 
+var arr = [
+    5, 7,
+    [4, [2], 8, [1, 3], 2],
+    [9, []],
+    1, 8
+  ];
 
+
+var i = 0;
+
+function treeSum(x) {
+    var brr;
+    var inside;
+
+    if(i == arr.length) {
+        return arr.length;
+    } else if (i < arr.length) {
+        brr = arr.pop();
+        treeSum();
+        //console.log('Свойства brr: ' + brr);
+        //console.log(brr);
+        console.log(brr);
+        if (typeof brr == "object") {
+            for (var j = 0; j <= brr.length; j++) {
+                //console.log(brr)    
+                inside = brr.pop();
+                //console.log('Свойства inside: ' + inside);
+                // console.log(inside);
+            }
+        } else {
+           
+            var numb = [];
+            numb.push(brr);
+            
+        }
+        // (2) Здесь хотел достать из вложенного массива его свойства. Вначале определив в родительских свойствах,
+        // что это свойство является массивом.  
+    }
+    
+    return;
+}
+
+
+ treeSum(arr);
+
+
+ // Убедится typeof далее length не должно быть undefined и что не null 
+ // isNaN проверка на NaN
+ // Делать через рекурсию 
+
+ // for (var key in arr)
+ // arr.length 
