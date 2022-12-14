@@ -92,7 +92,6 @@ function sumTo(n) {
     if (n == 1) {   
         return n;         
     } else {
-        console.log(n);
         return n + sumTo(n - 1);  
     } 
 }
@@ -146,7 +145,7 @@ alert (sumTo (4));
         }
         // (1) Хотел перевести все в строку, в том числе вложенный массив. И после перевести через parseInt в цикле в числа,
         // так как во вложенном массиве числа шли через запятую. 
-*/
+
 
 var arr = [
     5, 7,
@@ -157,41 +156,41 @@ var arr = [
 
 
 var i = 0;
+var brr = 0;
+var insideArray = 0;
 
 function treeSum(x) {
-    var brr;
-    var inside;
-
-    if(i == arr.length) {
-        return arr.length;
-    } else if (i < arr.length) {
-        brr = arr.pop();
-        treeSum();
-        //console.log('Свойства brr: ' + brr);
-        //console.log(brr);
-        console.log(brr);
-        if (typeof brr == "object") {
-            for (var j = 0; j <= brr.length; j++) {
-                //console.log(brr)    
-                inside = brr.pop();
-                //console.log('Свойства inside: ' + inside);
-                // console.log(inside);
-            }
-        } else {
+    
+    if(i == x.length) {
+        return x;
+    } 
+    //console.log('Итерация: ' + i);
+    
+    if (typeof x[i] == "object" && x[i].length > 0) {
+        //console.log(x[i]);
+        var array = x[i];
+        //console.log(array);
+        for (var j = 0; j < array.length; j++) {
            
-            var numb = [];
-            numb.push(brr);
-            
+            if (typeof array[j] == "object" && array[j].length > 0) {
+                
+            } else {
+                insideArray = insideArray + array[j];
+                console.log(insideArray);
+            }
         }
-        // (2) Здесь хотел достать из вложенного массива его свойства. Вначале определив в родительских свойствах,
-        // что это свойство является массивом.  
+        
+        
+    } else {
+        brr = brr + x[i]; 
+        //console.log(brr);
     }
     
-    return;
+    i++;
+    treeSum(x); 
 }
 
-
- treeSum(arr);
+treeSum(arr);
 
 
  // Убедится typeof далее length не должно быть undefined и что не null 
@@ -200,3 +199,92 @@ function treeSum(x) {
 
  // for (var key in arr)
  // arr.length 
+
+/*
+
+if (typeof brr == "object") {
+            for (var j = 0; j <= brr.length; j++) {
+                //console.log(brr)    
+                inside = brr.pop();
+                //console.log('Свойства inside: ' + inside);
+                // console.log(inside);
+            }
+        } else {
+           
+            //console.log(brr);
+            var numb = [];
+            numb.push(brr);
+            
+            
+            
+        }
+
+
+
+
+var arr = [
+    5, 7,
+    [4, [2], 8, [1, 3], 2],
+    [9, []],
+    1, 8
+  ];
+
+
+function treeSum(x) {
+    var brr = [];
+    for (let i = 0; i < x.length; i++) {  // 5, 7, arr, arr, 1, 8
+        //console.log(x);
+        
+        if (typeof x[i] == "object") {
+            //console.log('true');
+        } else {
+            brr.push(x[i]);
+           // console.log(brr);
+        }
+    }
+    //console.log(brr);
+}
+
+treeSum(arr);
+
+
+*/
+
+
+var arr = [
+    5, 7,
+    [4, [2], 8, [1, 3], 2],
+    [9, []],
+    1, 8
+  ];
+
+
+var brr = 0;
+var insideArray;
+var sumInside = 0;
+
+function treeSum(x) {
+    for (var i = 0; i < x.length; i++) {
+
+        if (typeof x[i] == "object" && x[i].length > 0) {
+            treeSum(x[i]);
+            insideArray = x[i];
+
+            for (var j = 0; j < insideArray.length; j++) {
+                if (typeof insideArray[j] == "number") {
+                    sumInside = sumInside + insideArray[j];
+                    console.log(sumInside);
+                }
+            }
+        } else {
+            
+        }
+    }
+    return;
+
+}
+
+treeSum(arr);
+
+
+// В процессе решения ...
