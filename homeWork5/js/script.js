@@ -3,7 +3,7 @@
 /* Задание 1:
     Создать функцию isEmpty(obj), которая возвращает true, если в объекте нет свойств и false – если хоть одно
     свойство есть. 
-
+*/
 
 var arr = {};
 
@@ -28,7 +28,7 @@ alert( isEmpty(arr) );
     иначе говоря, умножает x на себя n раз и возвращает результат.
     Запросить у пользователя x и n, а затем вывести результат pow(x, n).
     В этой задаче функция обязана поддерживать только натуральные значения n, т.е. целые от 1 и выше.
-
+*/
 
 var valueX = +prompt('Напишите число:');
 var valueN = +prompt('Напишите число:');
@@ -65,7 +65,7 @@ function pow (x, n) {
     Ответить на вопросы в комментариях:
       Какой вариант решения самый быстрый? Самый медленный? Почему?
       Можно ли при помощи рекурсии посчитать sumTo(100000)? Если нет, то почему? 
-
+*/
 
 
 // --- С использованием цикла --- //
@@ -135,124 +135,10 @@ alert (sumTo (4));
         [9, []],
         1, 8
       ]
-
-
-      var str = String(brr);
-        for (var j = 0; j < str[index]; j++) {
-            
-            var num = parseInt(str);
-            console.log('В цикле: ' + num);
-        }
-        // (1) Хотел перевести все в строку, в том числе вложенный массив. И после перевести через parseInt в цикле в числа,
-        // так как во вложенном массиве числа шли через запятую. 
-
-
-var arr = [
-    5, 7,
-    [4, [2], 8, [1, 3], 2],
-    [9, []],
-    1, 8
-  ];
-
-
-var i = 0;
-var brr = 0;
-var insideArray = 0;
-
-function treeSum(x) {
-    
-    if(i == x.length) {
-        return x;
-    } 
-    //console.log('Итерация: ' + i);
-    
-    if (typeof x[i] == "object" && x[i].length > 0) {
-        //console.log(x[i]);
-        var array = x[i];
-        //console.log(array);
-        for (var j = 0; j < array.length; j++) {
-           
-            if (typeof array[j] == "object" && array[j].length > 0) {
-                
-            } else {
-                insideArray = insideArray + array[j];
-                console.log(insideArray);
-            }
-        }
-        
-        
-    } else {
-        brr = brr + x[i]; 
-        //console.log(brr);
-    }
-    
-    i++;
-    treeSum(x); 
-}
-
-treeSum(arr);
-
-
- // Убедится typeof далее length не должно быть undefined и что не null 
- // isNaN проверка на NaN
- // Делать через рекурсию 
-
- // for (var key in arr)
- // arr.length 
-
-/*
-
-if (typeof brr == "object") {
-            for (var j = 0; j <= brr.length; j++) {
-                //console.log(brr)    
-                inside = brr.pop();
-                //console.log('Свойства inside: ' + inside);
-                // console.log(inside);
-            }
-        } else {
-           
-            //console.log(brr);
-            var numb = [];
-            numb.push(brr);
-            
-            
-            
-        }
-
-
-
-
-var arr = [
-    5, 7,
-    [4, [2], 8, [1, 3], 2],
-    [9, []],
-    1, 8
-  ];
-
-
-function treeSum(x) {
-    var brr = [];
-    for (let i = 0; i < x.length; i++) {  // 5, 7, arr, arr, 1, 8
-        //console.log(x);
-        
-        if (typeof x[i] == "object") {
-            //console.log('true');
-        } else {
-            brr.push(x[i]);
-           // console.log(brr);
-        }
-    }
-    //console.log(brr);
-}
-
-treeSum(arr);
-
-
 */
 
-
 var arr = [
-    5, 7,
+    5, 7, 'a', {name: 'Maks'}, '10', NaN, undefined, 
     [4, [2], 8, [1, 3], 2],
     [9, []],
     1, 8
@@ -260,31 +146,22 @@ var arr = [
 
 
 var brr = 0;
-var insideArray;
-var sumInside = 0;
-
+  
 function treeSum(x) {
     for (var i = 0; i < x.length; i++) {
+        if (typeof x[i] == "object" && x[i].length > 0
+            || typeof x[i] == "number" && isNaN(x[i]) !== true) {
 
-        if (typeof x[i] == "object" && x[i].length > 0) {
-            treeSum(x[i]);
-            insideArray = x[i];
-
-            for (var j = 0; j < insideArray.length; j++) {
-                if (typeof insideArray[j] == "number") {
-                    sumInside = sumInside + insideArray[j];
-                    console.log(sumInside);
-                }
-            }
-        } else {
+            if (typeof x[i] == "object") {
             
+                treeSum(x[i]);
+            } else {
+                brr = brr + (+x[i]);
+            }
         }
     }
-    return;
-
+    return brr;
 }
 
-treeSum(arr);
+alert (treeSum(arr));
 
-
-// В процессе решения ...
