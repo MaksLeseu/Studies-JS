@@ -14,7 +14,7 @@ console.log(styles);
 styles.push("Рок-н-Ролл");
 console.log(styles);
 
-styles.splice(-2, 1, 'Классика');
+styles[styles.length - 2] = 'Классика';
 console.log(styles);
 
 alert(styles.shift());
@@ -28,12 +28,14 @@ console.log(styles);
     При помощи цикла for вывести чётные числа от 2 до 10. Придумать несколько решений. 
 */
 
+// --------- Вариант 1 ----------- //
+
 for (var i = 1; i < 11; i++) {
     if (i % 2 == 1) continue;
     alert(i);
 }
 
-//---------------------------------------//
+// --------- Вариант 2 ----------- //
 
 for (var i = 1; i < 11; i++) {
     if (i == 2 
@@ -45,7 +47,7 @@ for (var i = 1; i < 11; i++) {
     } 
 }
 
-//---------------------------------------//
+// --------- Вариант 3 ----------- //
 
 for (var i = 1; i < 11; i++) {
     if (i % 2 !== 0) continue;
@@ -75,7 +77,6 @@ if (!isNaN(numberTwo) && numberTwo !== '' && numberTwo !== null) {
 if (!isNaN(numberThree) && numberThree !== '' && numberThree !== null) {
     var data = [];
     data.push(+numberOne, +numberTwo, +numberThree);
-    console.log(data); 
     alert(data[0] + data[1] + data[2]);
 }
 
