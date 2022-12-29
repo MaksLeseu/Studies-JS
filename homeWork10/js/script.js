@@ -223,30 +223,34 @@ var initialObj = {
 
 function deepClone(x) {
   var sum = {};
-  var arr;
-  var array = {};
+  var array;
 
     for (var k in x) {
       if (typeof x[k] == "object" && x[k] !== null) {
-        deepClone(x[k]);
-        //console.log(x[k]);
         
-        arr = x[k];
-        sum[k] = arr;
-        //console.log(array);
-        //console.log(arr);
+        array = x[k];
+        sum[k] = array;
+
+        x[k] = deepClone(x[k]);
       } else { 
         sum[k] = x[k];
       }
     }
-  //console.log(sum);
-  //console.log(array);
-  return;
+  return sum;
 }
 
-deepClone(initialObj);
+
+var clonedObj = deepClone(initialObj);
+
+
+clonedObj.boolean = false;
+clonedObj.string = 'Maks super';
+clonedObj.array.push('This'); 
+clonedObj.object.string2 = 'Maks klasss';
+
+console.log(initialObj);
+console.log(clonedObj);
 
 
 
-// В процессе решения .....
 
