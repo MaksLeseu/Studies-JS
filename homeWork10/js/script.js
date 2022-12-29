@@ -153,7 +153,7 @@ Animal.prototype.stroke = function() {
   console.log('Гладим кота.');
   return this;
 };
-
+/*
 var animal = new Animal();
 
 animal.feed().stroke();
@@ -164,6 +164,12 @@ animal.feed().stroke();
   Задание 2:
     Написать функцию, возвращающую глубокую копию объекта - его клон. Клонироваться должны значения всех типов данных
     (+ массивы и функции), а также любого уровня вложенности. Метод isArray использовать можно.
+
+    1. Написать проверку на объект или массив
+    2. От проверки должна вызываться рекурсия, которая должна копировать значения. 
+    3. Написать цикл, который будет копирывать все значения в новый объект?
+    Какие инструменты у меня есть: 
+    - Нужно написать цикл, выявить ключи со значениями.
 
     Протестировать работу функции можно на таком примере:
       var initialObj = {
@@ -194,13 +200,53 @@ animal.feed().stroke();
       console.log(clonedObj); 
 */
 
+var initialObj = {
+  string: 'Vasya',
+  number: 30,
+  boolean: true,
+  undefined: undefined,
+  null: null,
+  array: [1, 2, 3],
+  object: {
+      string2: 'Petrov',
+      object2: {
+          array2: [{}, {}]
+      },
+      object3: {}
+  },
+  method: function() {
+      alert('Hello');
+  }
+};
 
 
 
+function deepClone(x) {
+  var sum = {};
+  var arr;
+  var array = {};
+
+    for (var k in x) {
+      if (typeof x[k] == "object" && x[k] !== null) {
+        deepClone(x[k]);
+        //console.log(x[k]);
+        
+        arr = x[k];
+        sum[k] = arr;
+        //console.log(array);
+        //console.log(arr);
+      } else { 
+        sum[k] = x[k];
+      }
+    }
+  //console.log(sum);
+  //console.log(array);
+  return;
+}
+
+deepClone(initialObj);
 
 
 
-
-
-
+// В процессе решения .....
 
