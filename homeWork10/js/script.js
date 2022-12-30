@@ -239,7 +239,7 @@ function deepClone(x) {
   return sum;
 }
 
-
+/*
 var clonedObj = deepClone(initialObj);
 
 
@@ -250,7 +250,104 @@ clonedObj.object.string2 = 'Maks klasss';
 
 console.log(initialObj);
 console.log(clonedObj);
+*/
+
+/* 
+  Задание 3:
+    Написать функцию глубокого сравнения объектов, возвращающую boolean. Сравниваться должны значения всех типов данных
+    (+ массивы и функции), а также любого уровня вложенности. Для определения длины объектов разрешается использовать
+    метод Object.keys(). Хорошо протестировать работу функции (можно на объекте из пред. задания). */
+
+
+var initialObjTwo = {
+  style: 'Maks',
+  number: 50,
+  boolean: true,
+  undefined: undefined,
+  null: null,
+  array: [1, 2, 3],
+  object: {
+      string2: 'Petrov',
+      object2: {
+          array2: [{}, {}]
+      },
+      object3: {}
+  },
+  method: function() {
+      alert('Hello');
+  }
+};
+
+
+
+function globalComparison(x, y) {
+  var sum = [];
+  sum.push(x);
+  sum.push(y);
+
+  var tr = [];
+  var arrayX;
+  var arrayY;
+
+/*
+  if (Object.keys(sum[0]) == Object.keys(sum[1])) {
+    //console.log('Yes');
+  } */
+
+  for (var k in sum[0]) {
+
+    if (typeof sum[0][k] == "object" && sum[0][k] !== null) {
+      console.log(sum[0][k]);
+      console.log(sum[1][k]);
+
+      sum[0][k][1] = globalComparison(sum[0][k], sum[1][k]);
+
+      if (sum[0][k] ==  sum[1][k]) {
+        console.log('Yes');
+      }
+      
+    } else if (typeof sum[0][k] == "function") {
+      
+      if (String(sum[0][k]) === String(sum[1][k])) {
+        tr.push(true);
+      } else { 
+        return false;
+      }
+
+    } else {
+
+      if (sum[0][k] === sum[1][k]) {
+        tr.push(true);
+      } else {
+        //return false;
+      }
+
+    }
+
+  }
+  //console.log(tr);
+  return;
+}
+
+var get = globalComparison(initialObj, initialObjTwo);
+
+console.log(get);
+
+
+// В процессе решения ....
 
 
 
 
+/*
+for (var k in x) {
+    if (typeof x[k] == "object" && x[k] !== null) {
+      arrayX = x[k];
+      //console.log(arrayX);
+      //x[k] = globalComparison(x[k]);
+    } else {
+      
+      //console.log(x[k]);
+    }
+  }
+*/
