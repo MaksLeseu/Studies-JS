@@ -220,7 +220,6 @@ var initialObj = {
 };
 
 
-
 function deepClone(x) {
   var sum = {};
   var array;
@@ -239,10 +238,10 @@ function deepClone(x) {
   return sum;
 }
 
-/*
+
 var clonedObj = deepClone(initialObj);
 
-
+/*
 clonedObj.boolean = false;
 clonedObj.string = 'Maks super';
 clonedObj.array.push('This'); 
@@ -250,7 +249,7 @@ clonedObj.object.string2 = 'Maks klasss';
 
 console.log(initialObj);
 console.log(clonedObj);
-*/
+
 
 /* 
   Задание 3:
@@ -260,8 +259,8 @@ console.log(clonedObj);
 
 
 var initialObjTwo = {
-  style: 'Maks',
-  number: 50,
+  string: 'Vasya',
+  number: 30,
   boolean: true,
   undefined: undefined,
   null: null,
@@ -279,75 +278,52 @@ var initialObjTwo = {
 };
 
 
-
 function globalComparison(x, y) {
-  var sum = [];
-  sum.push(x);
-  sum.push(y);
+  var arrOne = [];
+  var arrTwo = [];
 
-  var tr = [];
-  var arrayX;
-  var arrayY;
+  if (Object.keys(x).length !== Object.keys(y).length) {
+    return false;
+  }
 
-/*
-  if (Object.keys(sum[0]) == Object.keys(sum[1])) {
-    //console.log('Yes');
-  } */
+  for (var k in x && y) {
+    arrOne.push(x[k]);
+    arrTwo.push(y[k]);
+  }
 
-  for (var k in sum[0]) {
+  for (var i = 0; i < arrOne.length && arrTwo.length; i++) {
 
-    if (typeof sum[0][k] == "object" && sum[0][k] !== null) {
-      console.log(sum[0][k]);
-      console.log(sum[1][k]);
+    if (typeof arrOne[i] == "object" && arrOne[i] !== null ||
+    typeof arrTwo[i] == "object" && arrTwo[i] !== null) {
 
-      sum[0][k][1] = globalComparison(sum[0][k], sum[1][k]);
+      if (Object.keys(arrOne[i]).length !== Object.keys(arrTwo[i]).length ||
+      !globalComparison(arrOne[i], arrTwo[i])) {
+        return false;
+      } 
 
-      if (sum[0][k] ==  sum[1][k]) {
-        console.log('Yes');
-      }
-      
-    } else if (typeof sum[0][k] == "function") {
-      
-      if (String(sum[0][k]) === String(sum[1][k])) {
-        tr.push(true);
-      } else { 
+    } else if(typeof arrOne[i] == "function") {
+   
+      if (String(arrOne[i]) !== String(arrTwo[i])) {
         return false;
       }
 
     } else {
 
-      if (sum[0][k] === sum[1][k]) {
-        tr.push(true);
-      } else {
-        //return false;
-      }
+      if (arrOne[i] !== arrTwo[i]) {
+        return false;
+      } 
 
     }
-
   }
-  //console.log(tr);
-  return;
+  return true;
 }
 
-var get = globalComparison(initialObj, initialObjTwo);
+var func = globalComparison(initialObj, initialObjTwo);
 
-console.log(get);
-
-
-// В процессе решения ....
+console.log(func);
 
 
 
 
-/*
-for (var k in x) {
-    if (typeof x[k] == "object" && x[k] !== null) {
-      arrayX = x[k];
-      //console.log(arrayX);
-      //x[k] = globalComparison(x[k]);
-    } else {
-      
-      //console.log(x[k]);
-    }
-  }
-*/
+
+

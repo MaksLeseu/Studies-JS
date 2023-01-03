@@ -153,7 +153,7 @@ function treeSum(x) {
             || typeof x[i] == "number" && isNaN(x[i]) !== true) {
 
             if (typeof x[i] == "object") {
-            
+                console.log(x[i]);
                 treeSum(x[i]);
             } else {
                 brr = brr + (+x[i]);
