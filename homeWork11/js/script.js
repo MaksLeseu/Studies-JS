@@ -25,7 +25,7 @@ function filterNumbersArr(numbers) {
     return numbers > 0;
 }
 
-//console.log(arr.filter(filterNumbersArr)); 
+console.log(arr.filter(filterNumbersArr)); 
 
 
 /* Задание 2:
@@ -37,7 +37,7 @@ var foundArr = arr.find(function(numbers) {
     return numbers > 0;
 });
 
-//console.log(foundArr);  
+console.log(foundArr);  
 
 
 /* Задание 3:
@@ -56,8 +56,8 @@ function isPalindrome(word) {
     return two == one;
 }
 
-//console.log(isPalindrome('шалаШ')); 
-//console.log(isPalindrome('привет'));
+console.log(isPalindrome('шалаШ')); 
+console.log(isPalindrome('привет'));
 
 
 /* Задание 4:
@@ -93,10 +93,10 @@ function areAnagrams(x, y) {
     return x === arr;
 }
 
-//console.log(areAnagrams('кот', 'отк')); 
-//console.log(areAnagrams('кот', 'атк')); 
-//console.log(areAnagrams('кот', 'отко'));
-//console.log(areAnagrams('слон', 'носл'));
+console.log(areAnagrams('кот', 'отк')); 
+console.log(areAnagrams('кот', 'атк')); 
+console.log(areAnagrams('кот', 'отко'));
+console.log(areAnagrams('слон', 'носл'));
 
 
 
@@ -110,4 +110,27 @@ function areAnagrams(x, y) {
 */
 
 
+function divideArr(arr, x) {
+    var array = [];   
 
+    if (x > 2) {
+
+        for (var i = 0; i < x; i++) {
+            var s = arr.splice(0, 3)
+            array.push(s);
+        }
+        
+    } else {
+        for (var i = 0; i < x; i++) {
+            var s = arr.splice(0, 2)
+            array.push(s);
+        }
+    }
+    
+    return array;
+}
+
+
+console.log(divideArr([1, 2, 3, 4], 2));
+console.log(divideArr([1, 2, 3, 4, 5, 6, 7, 8], 3));
+console.log(divideArr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4));
