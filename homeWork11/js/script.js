@@ -72,11 +72,28 @@ function isPalindrome(word) {
 
 
 function areAnagrams(x, y) {
-    var one = y.split('').sort().join('');
-    return x == one;
+    var arrX = x.split('');
+    var arrY = y.split('');
+    var array = [];
+
+    if (arrY.length === arrX.length) {
+        
+        for (var i = 0; i < arrX.length; i++) {
+            
+            var found = arrY.find(function(a) {
+                return a == arrX[i];
+            });
+            
+            array.push(found);
+        }
+    }
+
+    var arr = array.join('');
+
+    return x === arr;
 }
 
-//.log(areAnagrams('кот', 'отк')); 
+//console.log(areAnagrams('кот', 'отк')); 
 //console.log(areAnagrams('кот', 'атк')); 
 //console.log(areAnagrams('кот', 'отко'));
 //console.log(areAnagrams('слон', 'носл'));
