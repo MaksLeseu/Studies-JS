@@ -100,4 +100,28 @@ function numberVowels(text) {
 */
 
 
+function countSentencesLetters(text) {
+    var array = text.split(/[!.?]/);
+    var arrFilter = array.filter(function(item) {
+        return item !== '';
+    });
+
+    var arr = arrFilter.map(function(item) {
+        var str = item.toString();
+        var letters = str.split('');
+        var numbers = [];
+
+        for (var i = 0; i < letters.length; i++) {
+            if (letters[i] !== ' ' && letters[i] !== ',') {
+                numbers.push(letters[i]); 
+            } 
+        }
+        console.log(item + ':' + ' Letters quantity is:' + ' ' + numbers.length);
+        //return item + ':' + ' Letters quantity is:' + ' ' + numbers.length;
+    });
+    //return arr;
+}
+
+
+console.log(countSentencesLetters('Привет, студент! Студент... Как дела, студент?'));
 
