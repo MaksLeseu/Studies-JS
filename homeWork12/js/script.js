@@ -116,10 +116,12 @@ function countSentencesLetters(text) {
                 numbers.push(letters[i]); 
             } 
         }
-        console.log(item + ':' + ' Letters quantity is:' + ' ' + numbers.length);
-        //return item + ':' + ' Letters quantity is:' + ' ' + numbers.length;
+        return item + ':' + ' Letters quantity is:' + ' ' + numbers.length;
     });
-    //return arr;
+
+    for (var j = 0; j < arr.length; j++) {
+        alert(arr[j]);
+    }
 }
 
 
