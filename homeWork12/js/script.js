@@ -11,16 +11,11 @@ var block = document.getElementById('block');
 var newElement = document.createElement('p');
 var newElementTwo = document.createElement('p');
 
+newElement.innerHTML = 'Hello, here are <a href="">Link 1</a> and <a href="">Link 2</a>';
+newElementTwo.innerHTML = 'Hello, here are <a href="">Link 3</a> and <a href="">Link 4</a>';
+
 block.appendChild(newElement);
 block.appendChild(newElementTwo);
-
-
-newElement.textContent = 'Hello, here are Link 1 and ';
-newElementTwo.textContent = 'Hello, here are Link 3 and ';
-
-newElement.insertAdjacentHTML('beforeend', '<a href="">Link 2</a>');
-
-newElementTwo.insertAdjacentHTML('beforeend', '<a href="">Link 4</a>');
 
 
 
@@ -105,7 +100,7 @@ function countSentencesLetters(text) {
     var arrFilter = array.filter(function(item) {
         return item !== '';
     });
-
+    
     var arr = arrFilter.map(function(item) {
         var str = item.toString();
         var letters = str.split('');
@@ -124,6 +119,5 @@ function countSentencesLetters(text) {
     }
 }
 
-
-console.log(countSentencesLetters('Привет, студент! Студент... Как дела, студент?'));
+countSentencesLetters('Привет, студент! Студент... Как дела, студент?');
 
