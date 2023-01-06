@@ -32,12 +32,15 @@ console.log(arr.filter(filterNumbersArr));
     Написать функцию, принимающую массив чисел и возвращающую первое найденное положительное число. 
 */
 
+function func(x){
+    var foundArr = arr.find(function(numbers) {
+        return numbers > 0;
+    });
+    return foundArr;
+}
 
-var foundArr = arr.find(function(numbers) {
-    return numbers > 0;
-});
 
-console.log(foundArr);  
+console.log(func(arr));  
 
 
 /* Задание 3:
