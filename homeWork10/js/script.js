@@ -241,6 +241,7 @@ function deepClone(x) {
 
 var clonedObj = deepClone(initialObj);
 
+
 /*
 clonedObj.boolean = false;
 clonedObj.string = 'Maks super';
@@ -249,7 +250,6 @@ clonedObj.object.string2 = 'Maks klasss';
 
 console.log(initialObj);
 console.log(clonedObj);
-
 
 /* 
   Задание 3:
@@ -289,7 +289,7 @@ function globalComparison(x, y) {
   for (var k in x && y) {
     arrOne.push(x[k]);
     arrTwo.push(y[k]);
-  }
+  } 
 
   for (var i = 0; i < arrOne.length && arrTwo.length; i++) {
 

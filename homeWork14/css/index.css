@@ -1,0 +1,21 @@
+
+.color {
+    color: red;
+    font-size: 20px;
+}
+
+.line {
+    width: 500px;
+    height: 40px;
+    border: 1px black solid;
+}
+
+.cell {
+    margin: 0px;
+    padding: 0px;
+    width: 160px;
+    height: 40px;
+    border-right: 1px black solid;
+    background-color: burlywood;
+    display:  inline-flex;
+}
