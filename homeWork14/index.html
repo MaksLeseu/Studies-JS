@@ -10,14 +10,37 @@
 <body>
     <button id="button">Change links color and weight</button>
     <div id="block" class="block"></div>
-    <div class="line">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
+
+    <div class="table">
+        <div class="table__line">
+            <div class="line__cell">
+                <input id="in" type="text" value="">
+            </div>
+            <div class="line__cell">
+                <input id="in" type="text" value="">
+            </div>
+            <div class="line__cell line__cell-rigth">
+                <input id="in" type="text" value="">
+            </div>
+        </div>
+        <div class="table__line table__line-midle">
+            <div class="line__cell"></div>
+            <div class="line__cell"></div>
+            <div class="line__cell line__cell-rigth"></div>
+        </div>
+        <div id="line-table" class="table__line table__line-bottom">
+            <div class="line__cell">
+                <input id="in" type="text" value="">
+            </div>
+            <div class="line__cell">
+                <input id="in" type="text" value="">
+            </div>
+            <div class="line__cell line__cell-rigth">
+                <input id="in" type="text" value="">
+            </div>
+        </div> 
+        <button id="globalBtn" class="table__line line-add">Add</button>
     </div>
-    <div class="line"></div>
-    <div class="line"></div> 
-    <div class="add"></div>
 
     <script src="js/script.js"></script>
 </body>

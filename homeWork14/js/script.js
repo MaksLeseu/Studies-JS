@@ -41,6 +41,17 @@ two.addEventListener('click', function(event) {
 });
 
 
+/* for (var i = 0; i < input.length; i++) {
+    inputTwo = input[i];
+
+    inputTwo.addEventListener('change', function() {
+        console.log('change');
+
+        var inputValue = document.getElementById('in').value;
+          
+    });
+} */
+
 /* Задание 1:
     Сверстать таблицу из 3х столбцов, в последней строке которой все ячейки объеденены в одну с текстом
     "Добавить".
@@ -54,6 +65,48 @@ two.addEventListener('click', function(event) {
     Добавить событие по нажатию на Enter в случае, если на странице есть активный инпут. Событие должно работать точно
     так же, как и потеря фокуса, то есть прятать инпут и оставлять в ячейке текст. * 
 */
+
+//var table = document.getElementsByClassName('table');
+var line = document.getElementById('line-table');
+var cell = document.getElementsByClassName('line__cell');
+var input = document.getElementsByTagName('input');
+var inputTwo;
+
+for (var e = 0; e < input.length; e++) {
+    inputTwo = input[e];
+}
+
+
+parent.onclick = function(event) {
+    var targ = event.target;
+
+    for (var q = 0; q < cell.length; q++) {
+
+        if (targ == cell[q]) {
+            for (var w = 0; w < input.length; w++) {
+                console.log('working this program');
+                console.log(input[w]);
+                input[w].focus();
+            }
+        }
+    }
+}
+
+
+
+var btn = document.getElementById('globalBtn');
+var parent = btn.parentNode;
+
+btn.addEventListener('click', function() {
+    var clone = line.cloneNode(true);
+    parent.insertBefore(clone, btn);
+});
+
+
+
+
+
+
 
 
 
