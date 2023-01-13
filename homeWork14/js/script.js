@@ -56,7 +56,6 @@ two.addEventListener('click', function(event) {
     так же, как и потеря фокуса, то есть прятать инпут и оставлять в ячейке текст. * 
 */
 
-//var table = document.getElementsByClassName('table');
 var line = document.getElementById('line-table');
 var cell = document.getElementsByClassName('line__cell');
 var input = document.getElementsByTagName('input');
@@ -75,7 +74,7 @@ parent.onclick = function(event) {
             targ.firstElementChild.remove();
         }
 
-        newInput.addEventListener('change', function() {
+        newInput.addEventListener('focusout', function() {
             var newParagraph = document.createElement('p');
             var inputValue = newInput.value;
             newParagraph.textContent += inputValue;
