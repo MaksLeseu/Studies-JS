@@ -41,16 +41,6 @@ two.addEventListener('click', function(event) {
 });
 
 
-/* for (var i = 0; i < input.length; i++) {
-    inputTwo = input[i];
-
-    inputTwo.addEventListener('change', function() {
-        console.log('change');
-
-        var inputValue = document.getElementById('in').value;
-          
-    });
-} */
 
 /* Задание 1:
     Сверстать таблицу из 3х столбцов, в последней строке которой все ячейки объеденены в одну с текстом
@@ -70,10 +60,9 @@ two.addEventListener('click', function(event) {
 var line = document.getElementById('line-table');
 var cell = document.getElementsByClassName('line__cell');
 var input = document.getElementsByTagName('input');
-var childCell;
 
 parent.onclick = function(event) {
-    var targ = event.target;                  // Ссылка на DOM объект, где изначально произошло событие
+    var targ = event.target;                  
 
     if (targ.tagName == 'DIV') {
         var newInput = document.createElement('input');
@@ -81,7 +70,7 @@ parent.onclick = function(event) {
 
         if (targ.firstElementChild.tagName == 'P') {
             var paragraphValue = targ.firstElementChild.textContent;
-            
+
             newInput.value += paragraphValue;
             targ.firstElementChild.remove();
         }
@@ -97,13 +86,23 @@ parent.onclick = function(event) {
 }
 
 
-
 var btn = document.getElementById('globalBtn');
 var parent = btn.parentNode;
 
+
 btn.addEventListener('click', function() {
     var clone = line.cloneNode(true);
-    parent.insertBefore(clone, btn);
+
+    for (var s = 0; s < clone.children.length; s++) {
+
+        if (clone.children[s].firstElementChild) {
+
+            clone.children[s].firstElementChild.remove();
+            parent.insertBefore(clone, btn);
+        } else {
+            parent.insertBefore(clone, btn);
+        }
+    }
 });
 
 
