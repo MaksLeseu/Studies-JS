@@ -72,26 +72,14 @@ var cell = document.getElementsByClassName('line__cell');
 var input = document.getElementsByTagName('input');
 var inputTwo;
 
-for (var e = 0; e < input.length; e++) {
-    inputTwo = input[e];
-}
-
 
 parent.onclick = function(event) {
-    var targ = event.target;
+    var targ = event.target;                  // Ссылка на DOM объект, где изначально произошло событие
 
-    for (var q = 0; q < cell.length; q++) {
-
-        if (targ == cell[q]) {
-            for (var w = 0; w < input.length; w++) {
-                console.log('working this program');
-                console.log(input[w]);
-                input[w].focus();
-            }
-        }
+    if (targ.tagName == 'DIV') {
+        targ.firstElementChild.focus();
     }
 }
-
 
 
 var btn = document.getElementById('globalBtn');
