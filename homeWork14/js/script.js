@@ -70,16 +70,40 @@ two.addEventListener('click', function(event) {
 var line = document.getElementById('line-table');
 var cell = document.getElementsByClassName('line__cell');
 var input = document.getElementsByTagName('input');
-var inputTwo;
-
+var childCell;
+var cloneInput;
 
 parent.onclick = function(event) {
     var targ = event.target;                  // Ссылка на DOM объект, где изначально произошло событие
 
     if (targ.tagName == 'DIV') {
         targ.firstElementChild.focus();
+        targ.firstElementChild.addEventListener('change', function() {
+            var newParagraph = document.createElement('p');
+            var inputValue = targ.firstElementChild.value;
+            newParagraph.textContent += inputValue;
+            targ.appendChild(newParagraph);
+            console.log(newParagraph);
+            var cloneInput = targ.firstElementChild.cloneNode(true);
+            targ.firstElementChild.remove();
+            
+            targ.onclick = function() {
+                targ.appendChild(cloneInput);
+                targ.firstElementChild.focus();
+                newParagraph.remove();
+            }
+        });
+    } else if (targ.tagName == 'INPUT') {
+        targ.addEventListener('change', function() {
+            var newParagraph = document.createElement('p');
+            var inputValue = targ.value;
+            newParagraph.textContent += inputValue;
+            //targ.insertBefore(newParagraph, inputValue);
+            console.log(newParagraph);
+        });
     }
 }
+
 
 
 var btn = document.getElementById('globalBtn');
