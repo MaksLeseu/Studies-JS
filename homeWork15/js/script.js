@@ -37,12 +37,16 @@ two.addEventListener('click', function(event) {
     
     if (target.tagName == 'A') {
         var atribut = target.getAttribute('href');
-
+        var arr = {};
+        
         if (localStorage.getItem(target.innerText) == null) {
-            localStorage.setItem(target.innerText, atribut);
+            arr.path = atribut;
+            var arrTwo = JSON.stringify(arr);
+
+            localStorage.setItem(target.innerText, arrTwo);
             alert('Информация сохранена');
         } else {
-            alert(localStorage.getItem(target.innerText));
+            alert(atribut);
         }
         event.preventDefault();
     }
