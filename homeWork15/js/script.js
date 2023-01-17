@@ -71,10 +71,12 @@ window.onload = function() {
 
 //var form = document.getElementsByClassName('form');
 var form = document.getElementById('forma');
-//var inputX = document.getElementById('input-x');
+var inputX = document.getElementById('input-x');
 var inputY = document.getElementById('input-y');
-var input = document.getElementsByTagName('input');
+//var input = document.getElementsByTagName('input'); 
 var button = document.getElementById('button-create');
+var chess = document.getElementById('chess-board');
+button.disabled = true;
 
 
 
@@ -83,35 +85,62 @@ form.addEventListener('keyup', function(event) {
     var target = event.target;
     
     if (target.tagName == 'INPUT') {
-        var inp = target;
-        
-        console.log(Number(inp.value));
 
-        if (typeof Number(inp.value) === 'number' && 
-        Number(inp.value) !== NaN) {
-            console.log('number working');
+        if (inputX.value !== '' && inputY.value !== '') {
+            button.disabled = false;
+        } else {
+            button.disabled = true;
         }
     }
-    
 });
 
+
 button.onclick = function() {
-    console.log('working button');
+    var inputXValue = Number(inputX.value);
+    var inputYValue = Number(inputY.value);
+
+    if (typeof inputXValue === 'number' && !isNaN(inputXValue) &&
+    inputXValue !== 0 && inputXValue <= 10 && inputXValue % 1 == 0 &&
+    inputYValue % 1 == 0 && typeof inputYValue === 'number' && 
+    !isNaN(inputYValue) && inputYValue !== 0 && inputYValue <= 10) {
+
+        for (var x = 0; x < inputXValue; x++) {
+
+            var divX = document.createElement('div');
+            chess.appendChild(divX);
+            divX.classList.add('black');
+
+            for (var y = 0; y < inputYValue; y++) {
+                
+                var divY = document.createElement('div');
+                chess.appendChild(divY);
+                divX.classList.add('white');
+
+            }
+
+        }
+
+
+    } else {
+        alert('Неправильные данные');
+        inputX.value = '';
+        inputY.value = '';
+        button.disabled = true;
+    } 
+
+    
 }
 
+
+
+
+
 /*
-f (inputX.value == '') {
-    console.log('This is string');
-} else {
-    if (typeof inputX.value === 'string') {
-        console.log('Yes');
-    }
-}
-if (inputX.value == '') {
-    console.log('Yes');
-} else {
-    console.log('No')
-}
+(typeof Number(inputX.value) === 'number' && !isNaN(Number(inputX.value)) 
+        && Number(inputX.value) !== 0 && Number(inputX.value) <= 10 
+        && Number(inputX.value) % 1 == 0 && Number(inputY.value) % 1 == 0 
+        && typeof Number(inputY.value) === 'number' && !isNaN(Number(inputY.value)) 
+        && Number(inputY.value) !== 0 && Number(inputY.value) <= 10)
 
 */
 
