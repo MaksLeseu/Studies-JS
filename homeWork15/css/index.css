@@ -25,14 +25,14 @@
 }
 
 .black {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     background-color: black;
 }
 
 .white {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     background-color: #E6E6FA;
 }
 
@@ -48,9 +48,3 @@
     display: flex;
 }
 
-.out {
-    background-color: blue;
-    border: 1px red solid;
-    width: 20px;
-    height: 20px;
-}

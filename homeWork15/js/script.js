@@ -127,20 +127,27 @@ button.onclick = function() {
                 
                 if (arr.length > inputYValue - 1) continue;
                 
-                for (var z = 0; z < inputXValue; z++) {
+                for (var j = 0; j < inputXValue; j++) {
 
                     var yChild = document.createElement('div');
                     divY.appendChild(yChild);
 
-                    if (z % 2 == 1) {
-                        yChild.classList.add('white');
+                    if (y % 2 == 1) {
+
+                        if (j % 2 == 1) {
+                            yChild.classList.add('white');
+                        } else {
+                            yChild.classList.add('black');
+                        }
                     } else {
-                        yChild.classList.add('black');
+                        if (j % 2 == 0) {
+                            yChild.classList.add('white');
+                        } else {
+                            yChild.classList.add('black');
+                        }
                     }
-                    //yChild.classList.add('out');
                 }
             }
-
         }
 
     } else {
