@@ -76,6 +76,8 @@ var inputY = document.getElementById('input-y');
 //var input = document.getElementsByTagName('input'); 
 var button = document.getElementById('button-create');
 var chess = document.getElementById('chess-board');
+var chessChild = document.getElementById('chess-board-child');
+var Yparents = document.getElementById('y-parents');
 button.disabled = true;
 
 
@@ -103,23 +105,43 @@ button.onclick = function() {
     inputXValue !== 0 && inputXValue <= 10 && inputXValue % 1 == 0 &&
     inputYValue % 1 == 0 && typeof inputYValue === 'number' && 
     !isNaN(inputYValue) && inputYValue !== 0 && inputYValue <= 10) {
+        var arr = [];
 
-        for (var x = 0; x < inputXValue; x++) {
-
+        for (var x = 0; x < inputXValue; x++) {      
+            
             var divX = document.createElement('div');
-            chess.appendChild(divX);
-            divX.classList.add('black');
+            chessChild.appendChild(divX);
 
-            for (var y = 0; y < inputYValue; y++) {
-                
+            if (x % 2 == 0) {
+                divX.classList.add('white');
+            } else {
+                divX.classList.add('black');
+            }
+
+            for (var y = 1; y < inputYValue; y++) {
+
                 var divY = document.createElement('div');
                 chess.appendChild(divY);
-                divX.classList.add('white');
+                divY.classList.add('flex');
+                arr.push(divY);
+                
+                if (arr.length > inputYValue - 1) continue;
+                
+                for (var z = 0; z < inputXValue; z++) {
 
+                    var yChild = document.createElement('div');
+                    divY.appendChild(yChild);
+
+                    if (z % 2 == 1) {
+                        yChild.classList.add('white');
+                    } else {
+                        yChild.classList.add('black');
+                    }
+                    //yChild.classList.add('out');
+                }
             }
 
         }
-
 
     } else {
         alert('Неправильные данные');

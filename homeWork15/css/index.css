@@ -25,18 +25,32 @@
 }
 
 .black {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     background-color: black;
 }
 
 .white {
-    width: 15px;
-    height: 15px;
-    background-color: blue;
+    width: 20px;
+    height: 20px;
+    background-color: #E6E6FA;
 }
 
 .chess-board {
-    max-width: 300px;
+    border: 1px black solid;
+}
+
+.chess-board-child {
+    display: flex;
+}
+
+.flex {
+    display: flex;
+}
+
+.out {
+    background-color: blue;
     border: 1px red solid;
+    width: 20px;
+    height: 20px;
 }
