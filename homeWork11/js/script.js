@@ -19,13 +19,26 @@
       filterNumbersArr([-1, 0, 2, 34, -2]); 
 */
 
+
 var arr = [-1, 0, 2, 34, -2];
 
-function filterNumbersArr(numbers) {
+function filterNumbersArr(numbers) {     
     return numbers > 0;
 }
 
 console.log(arr.filter(filterNumbersArr)); 
+
+// ------------------ Второе решение ----------------- //
+
+var arr = [-1, 0, 2, 34, -2];
+
+function filterNumbersArr(numbers) { 
+    return arr.filter(function(number) {
+        return number > 0;
+    });
+}
+
+filterNumbersArr(arr);
 
 
 /* Задание 2:
@@ -41,6 +54,25 @@ function func(x){
 
 
 console.log(func(arr));  
+
+// ------------------- Второе решение ------------------- //
+
+function func(numbers) { 
+    return arr.find(function(number) {
+        return number > 0;
+    });
+}
+
+func(arr);
+
+// -------------------- Аналог --------------------- // Дающий такой-же реультат
+
+function func(numbers) { 
+    return arr.filter(function(number) {
+        return number > 0;
+    })[0];
+}
+
 
 
 /* Задание 3:
@@ -101,8 +133,16 @@ console.log(areAnagrams('кот', 'атк'));
 console.log(areAnagrams('кот', 'отко'));
 console.log(areAnagrams('слон', 'носл'));
 
+// ------------------- Второе решение ------------------- //
 
+function areAnagrams(x, y) {
+    return x.toLowerCase().split('').sort().join('') === y.toLowerCase().split('').sort().join('');
+}
 
+console.log(areAnagrams('кот', 'отк')); 
+console.log(areAnagrams('кот', 'атк')); 
+console.log(areAnagrams('кот', 'отко'));
+console.log(areAnagrams('слон', 'носл'));
 
 /* Задание 5:
     Написать функцию, которая будет разбивать массив на под-массивы определенной длины.
@@ -137,3 +177,25 @@ function divideArr(arr, x) {
 console.log(divideArr([1, 2, 3, 4], 2));
 console.log(divideArr([1, 2, 3, 4, 5, 6, 7, 8], 3));
 console.log(divideArr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4));
+
+
+// ------------------- Второе решение ------------------- //
+
+function divideArr(arr, x) {
+    var array = [];
+
+    for (var i = 0; i < arr.length; i += x) {
+        array.push(arr.slice(i, i + x));
+    }
+
+    return array;
+}
+
+console.log(divideArr([1, 2, 3, 4], 2));
+console.log(divideArr([1, 2, 3, 4, 5, 6, 7, 8], 3));
+console.log(divideArr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4));
+
+// На первой итерации i = 0
+// slice  Вырезает от 0 до указанного числа, например 3-х, не включая его. [1, 2, 3]
+// На второй итерации от 3 до 6. [4, 5, 6]
+// На третей итерации от 6 до 8

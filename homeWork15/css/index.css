@@ -36,14 +36,6 @@
     background-color: #E6E6FA;
 }
 
-.chess-board {
-    border: 1px black solid;
-}
-
-.chess-board-child {
-    display: flex;
-}
-
 .flex {
     display: flex;
 }

@@ -32,7 +32,17 @@ function funcName(arr) {
     return array;
 }
 
-//console.log(funcName(['Maks', 'Vasya', 'Fil', 'Art']));
+console.log(funcName(['Maks', 'Vasya', 'Fil', 'Art']));
+
+// ----------------- Второе решение ---------------------- //
+
+function funcName(arr) {
+    return arr.map(function(item) {
+        return {name: item};
+    });
+}
+
+console.log(funcName(['Maks', 'Vasya', 'Fil', 'Art']));
 
 
 /* Задание 2:
@@ -49,8 +59,16 @@ function funcTime(arr) {
 }
 
 
-//alert(funcTime(['00', '13', '24']));
+alert(funcTime(['00', '13', '24']));
 
+// ---------------- Второе решение ------------------- // 
+
+
+function funcTime(arr) {
+    var time = arr.reduce(function(result, current) {
+        return result + ' : ' + current;
+    }, 'Текущее время');
+}
 
 
 /* Задание 3:

@@ -69,14 +69,11 @@ window.onload = function() {
     По клику на любое поле доски - цвета всех полей должны изменяться на противоположные. 
 */
 
-//var form = document.getElementsByClassName('form');
 var form = document.getElementById('forma');
 var inputX = document.getElementById('input-x');
 var inputY = document.getElementById('input-y');
-//var input = document.getElementsByTagName('input'); 
 var button = document.getElementById('button-create');
 var chess = document.getElementById('chess-board');
-var chessChild = document.getElementById('chess-board-child');
 var Yparents = document.getElementById('y-parents');
 button.disabled = true;
 
@@ -106,6 +103,11 @@ button.onclick = function() {
     inputYValue % 1 == 0 && typeof inputYValue === 'number' && 
     !isNaN(inputYValue) && inputYValue !== 0 && inputYValue <= 10) {
         var arr = [];
+        var allDiv = [];
+
+        var chessChild = document.createElement('div');
+        chess.appendChild(chessChild);
+        chessChild.classList.add('flex');
 
         for (var x = 0; x < inputXValue; x++) {      
             
@@ -117,6 +119,8 @@ button.onclick = function() {
             } else {
                 divX.classList.add('black');
             }
+
+            allDiv.push(divX);
 
             for (var y = 1; y < inputYValue; y++) {
 
@@ -139,13 +143,57 @@ button.onclick = function() {
                         } else {
                             yChild.classList.add('black');
                         }
+
                     } else {
+                        
                         if (j % 2 == 0) {
                             yChild.classList.add('white');
                         } else {
                             yChild.classList.add('black');
                         }
+
                     }
+
+                    allDiv.push(yChild);
+
+                    chess.onclick = function(event) {
+                        var target = event.target;
+                    
+                        if (target.tagName == 'DIV') {
+                            
+                            if (allDiv[0].classList.contains('white')) {
+
+                                for (var q = 0; q < allDiv.length; q++) {
+                                
+                                    if (q % 2 == 0) {
+                                        allDiv[q].classList.toggle('white');
+                                        allDiv[q].classList.add('black');
+                                    } else {
+                                        allDiv[q].classList.toggle('black');
+                                        allDiv[q].classList.add('white');
+                                    }
+    
+                                }
+
+                            } else {
+
+                                for (var p = 0; p < allDiv.length; p++) {
+                                
+                                    if (p % 2 == 1) {
+                                        allDiv[p].classList.toggle('white');
+                                        allDiv[p].classList.add('black');
+                                    } else {
+                                        allDiv[p].classList.toggle('black');
+                                        allDiv[p].classList.add('white');
+                                    }
+    
+                                }
+
+                            }
+                            
+                        }
+                    }
+
                 }
             }
         }
@@ -156,9 +204,10 @@ button.onclick = function() {
         inputY.value = '';
         button.disabled = true;
     } 
-
-    
 }
+
+
+
 
 
 
