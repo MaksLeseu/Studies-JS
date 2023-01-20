@@ -45,11 +45,9 @@ button.onclick = function() {
 
         for (var i = 0; i < arr.length; i++) {
 
-            parentsElment.insertAdjacentHTML('afterbegin', '<button>User 1</button>'); 
+            parentsElment.insertAdjacentHTML('afterbegin', '<button>User</button>'); 
             var elementTab = parentsElment.firstElementChild;
             elementTab.classList.add('table__tab');
-
-            //console.log(arr[i]);
             
 
             elementTab.onclick = function(event) {
@@ -58,20 +56,38 @@ button.onclick = function() {
               
               for (var j = 0; j < elementsTab.length; j++) {
                 elementsTab[j].classList.remove('table__tab-active');
+                
+                var newP = elementList.firstElementChild;
+                if (newP) newP.remove();
               }
 
               if (target.tagName = 'BUTTON') {
                 
                 target.classList.add('table__tab-active');
+                
+                for (var j = 0; j < elementsTab.length; j++) {
+                  
+                  if (elementsTab[j] == target) {
+                    
+                    var elemenP = document.createElement('p');
+                    elementList.appendChild(elemenP);
+                    elemenP.innerHTML = 'First Name: ' + arr[j].first_name;
+                    elemenP.classList.add('paragraph');
+
+                    var elemenP = document.createElement('p');
+                    elementList.appendChild(elemenP);
+                    elemenP.innerHTML = 'Last Name: ' + arr[j].last_name;
+                    elemenP.classList.add('paragraph');
+
+                    
+                    
+                    var elemenImg = document.createElement('img');
+                    elementList.appendChild(elemenImg);
+                    elemenImg.src = arr[j].avatar;
+                  }
+                }
               } 
-
             }
-
-         
-            
-            var elemenP = document.createElement('p');
-            elementList.appendChild(elemenP);
-            elemenP.innerHTML = 'First Name: ' + arr[i].first_name;
         }
         
     };
