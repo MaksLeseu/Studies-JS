@@ -107,13 +107,21 @@ body {
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     margin-right: 10px;
-}
-
-.table__tab p {
     font-weight: 700;
     font-size: 18px;
     text-align: center;
-    padding-top: 9px;
+}
+
+.table__tab-active {
+    background-color: white;
+    width: 100px;
+    height: 40px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-right: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
 }
 
 .table__list {

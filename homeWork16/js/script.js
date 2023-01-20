@@ -33,10 +33,9 @@ button.onclick = function() {
 
         console.log((statusType === 2) ? JSON.parse(this.response).data : this.status);
 
-        //arrGet.push(JSON.parse(this.response).data);
         var arr = JSON.parse(this.response).data;
 
-        var parentsElment = document.createElement('div');
+        var parentsElment = document.createElement('form');
         table.insertBefore(parentsElment, elementList);
         parentsElment.classList.add('display');
 
@@ -46,12 +45,30 @@ button.onclick = function() {
 
         for (var i = 0; i < arr.length; i++) {
 
-            parentsElment.insertAdjacentHTML('afterbegin', '<div><p>User 1</p></div>');
+            parentsElment.insertAdjacentHTML('afterbegin', '<button>User 1</button>'); 
             var elementTab = parentsElment.firstElementChild;
             elementTab.classList.add('table__tab');
 
-            console.log(arr[i]);
+            //console.log(arr[i]);
+            
 
+            elementTab.onclick = function(event) {
+              var target = event.target;
+              var elementsTab = parentsElment.children;
+              
+              for (var j = 0; j < elementsTab.length; j++) {
+                elementsTab[j].classList.remove('table__tab-active');
+              }
+
+              if (target.tagName = 'BUTTON') {
+                
+                target.classList.add('table__tab-active');
+              } 
+
+            }
+
+         
+            
             var elemenP = document.createElement('p');
             elementList.appendChild(elemenP);
             elemenP.innerHTML = 'First Name: ' + arr[i].first_name;
