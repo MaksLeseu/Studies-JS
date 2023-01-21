@@ -51,6 +51,10 @@ button.onclick = function() {
         elementList.classList.add('table__list');
 
 
+        var paragraphFirstActiveTab = document.createElement('p');
+        var paragraphLastActiveTab = document.createElement('p');
+        var imgActiveTab = document.createElement('img');
+        
 
         for (var i = 0; i < arr.length; i++) {
 
@@ -59,6 +63,18 @@ button.onclick = function() {
             elementTab.classList.add('table__tab');
 
             elementTab.innerHTML += ' ' + (i + 1);
+
+        
+            if (i == 5) parentsElment.children[0].classList.add('table__tab-active');
+            
+
+            elementList.appendChild(paragraphFirstActiveTab).innerHTML = 'First Name: ' + arr[0].first_name;
+            elementList.appendChild(paragraphLastActiveTab).innerHTML = 'Last Name: ' + arr[0].last_name;
+            elementList.appendChild(imgActiveTab).src = arr[0].avatar;
+
+            paragraphFirstActiveTab.classList.add('paragraph');
+            paragraphLastActiveTab.classList.add('paragraph');
+           
 
 
             elementTab.onclick = function(event) {
@@ -70,8 +86,8 @@ button.onclick = function() {
                 for (var j = 0; j < elementsTab.length; j++) {
                     elementsTab[j].classList.remove('table__tab-active');
                 
-                    var newP = elementList.firstElementChild;
-                    if (newP) newP.remove();
+                    var newParagraph = elementList.firstElementChild;
+                    if (newParagraph) newParagraph.remove();
                 }
 
 
@@ -85,21 +101,18 @@ button.onclick = function() {
 
                         if (elementsTab[j] == target) {
                     
-                            var elemenP = document.createElement('p');
-                            elementList.appendChild(elemenP);
-                            elemenP.innerHTML = 'First Name: ' + arr[j].first_name;
-                            elemenP.classList.add('paragraph');
+                            var elementParagrephFirst = document.createElement('p');
+                            elementList.appendChild(elementParagrephFirst).innerHTML = 'First Name: ' + arr[j].first_name;
+                            elementParagrephFirst.classList.add('paragraph');
 
 
-                            var elemenP = document.createElement('p');
-                            elementList.appendChild(elemenP);
-                            elemenP.innerHTML = 'Last Name: ' + arr[j].last_name;
-                            elemenP.classList.add('paragraph');
+                            var elementParagraphLast = document.createElement('p');
+                            elementList.appendChild(elementParagraphLast).innerHTML = 'Last Name: ' + arr[j].last_name;
+                            elementParagraphLast.classList.add('paragraph');
 
         
-                            var elemenImg = document.createElement('img');
-                            elementList.appendChild(elemenImg);
-                            elemenImg.src = arr[j].avatar;
+                            var elementImg = document.createElement('img');
+                            elementList.appendChild(elementImg).src = arr[j].avatar;
                         }
                     }
                 } 
