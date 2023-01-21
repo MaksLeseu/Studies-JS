@@ -22,16 +22,22 @@ var table = document.getElementById('table');
 
 
 button.onclick = function() {
+
     var xhr = new XMLHttpRequest();
-    //var arrGet = [];
 
     xhr.open('GET', 'https://reqres.in/api/users?page=2', true);
     xhr.send();
 
-    xhr.onload = function() {
-        var statusType = Math.round(this.status / 100);
 
-        console.log((statusType === 2) ? JSON.parse(this.response).data : this.status);
+
+    xhr.onload = function() {
+        //var statusType = Math.round(this.status / 100);
+
+        //console.log((statusType === 2) ? JSON.parse(this.response).data : this.status);
+
+        var tableChild = table.firstElementChild;
+        if (tableChild) return false;
+
 
         var arr = JSON.parse(this.response).data;
 
@@ -39,58 +45,70 @@ button.onclick = function() {
         table.insertBefore(parentsElment, elementList);
         parentsElment.classList.add('display');
 
+
         var div = document.createElement('div');
         var elementList = table.appendChild(div);
         elementList.classList.add('table__list');
+
+
 
         for (var i = 0; i < arr.length; i++) {
 
             parentsElment.insertAdjacentHTML('afterbegin', '<button>User</button>'); 
             var elementTab = parentsElment.firstElementChild;
             elementTab.classList.add('table__tab');
-            
+
+            elementTab.innerHTML += ' ' + (i + 1);
+
 
             elementTab.onclick = function(event) {
-              var target = event.target;
-              var elementsTab = parentsElment.children;
+                var target = event.target;
+                var elementsTab = parentsElment.children;
               
-              for (var j = 0; j < elementsTab.length; j++) {
-                elementsTab[j].classList.remove('table__tab-active');
-                
-                var newP = elementList.firstElementChild;
-                if (newP) newP.remove();
-              }
 
-              if (target.tagName = 'BUTTON') {
-                
-                target.classList.add('table__tab-active');
-                
+
                 for (var j = 0; j < elementsTab.length; j++) {
-                  
-                  if (elementsTab[j] == target) {
-                    
-                    var elemenP = document.createElement('p');
-                    elementList.appendChild(elemenP);
-                    elemenP.innerHTML = 'First Name: ' + arr[j].first_name;
-                    elemenP.classList.add('paragraph');
-
-                    var elemenP = document.createElement('p');
-                    elementList.appendChild(elemenP);
-                    elemenP.innerHTML = 'Last Name: ' + arr[j].last_name;
-                    elemenP.classList.add('paragraph');
-
-                    
-                    
-                    var elemenImg = document.createElement('img');
-                    elementList.appendChild(elemenImg);
-                    elemenImg.src = arr[j].avatar;
-                  }
+                    elementsTab[j].classList.remove('table__tab-active');
+                
+                    var newP = elementList.firstElementChild;
+                    if (newP) newP.remove();
                 }
-              } 
+
+
+
+                if (target.tagName = 'BUTTON') {
+                
+                    target.classList.add('table__tab-active');
+                
+                    for (var j = 0; j < elementsTab.length; j++) {
+                  
+
+                        if (elementsTab[j] == target) {
+                    
+                            var elemenP = document.createElement('p');
+                            elementList.appendChild(elemenP);
+                            elemenP.innerHTML = 'First Name: ' + arr[j].first_name;
+                            elemenP.classList.add('paragraph');
+
+
+                            var elemenP = document.createElement('p');
+                            elementList.appendChild(elemenP);
+                            elemenP.innerHTML = 'Last Name: ' + arr[j].last_name;
+                            elemenP.classList.add('paragraph');
+
+        
+                            var elemenImg = document.createElement('img');
+                            elementList.appendChild(elemenImg);
+                            elemenImg.src = arr[j].avatar;
+                        }
+                    }
+                } 
             }
         }
-        
     };
 }
+
+
+
 
 
