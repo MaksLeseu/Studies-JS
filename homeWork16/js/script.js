@@ -31,15 +31,22 @@ button.onclick = function() {
 
 
     xhr.onload = function() {
-        //var statusType = Math.round(this.status / 100);
+        var statusType = Math.round(this.status / 100);
 
-        //console.log((statusType === 2) ? JSON.parse(this.response).data : this.status);
+        if (statusType === 2) {
+            var arr = JSON.parse(this.response).data;
+        } else {
+            var error = document.createElement('p');
+            table.appendChild(error).innerHTML = 'Ошибка!!!' + ' Данные не получены.' + ' Попробуйте изменить URL';
+            error.classList.add('error');
+            return false;
+        }
+
 
         var tableChild = table.firstElementChild;
         if (tableChild) return false;
 
 
-        var arr = JSON.parse(this.response).data;
 
         var parentsElment = document.createElement('form');
         table.insertBefore(parentsElment, elementList);
