@@ -42,7 +42,7 @@ button.onclick = function() {
             return false;
         }
 
-
+        
         var tableChild = table.firstElementChild;
         if (tableChild) return false;
 
@@ -65,11 +65,11 @@ button.onclick = function() {
 
         for (var i = 0; i < arr.length; i++) {
 
-            parentsElment.insertAdjacentHTML('afterbegin', '<button>User</button>'); 
-            var elementTab = parentsElment.firstElementChild;
+            var elementTab = document.createElement('button');
+            parentsElment.appendChild(elementTab);
             elementTab.classList.add('table__tab');
 
-            elementTab.innerHTML += ' ' + (i + 1);
+            elementTab.innerHTML += 'User ' + (i + 1);
 
         
             if (i == 5) parentsElment.children[0].classList.add('table__tab-active');
@@ -88,6 +88,7 @@ button.onclick = function() {
                 var target = event.target;
                 var elementsTab = parentsElment.children;
               
+                console.log(event);
 
 
                 for (var j = 0; j < elementsTab.length; j++) {
