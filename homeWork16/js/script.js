@@ -22,16 +22,17 @@ var table = document.getElementById('table');
 
 
 button.onclick = function() {
-
+  
     var xhr = new XMLHttpRequest();
 
     xhr.open('GET', 'https://reqres.in/api/users?page=2', true);
     xhr.send();
 
 
-
     xhr.onload = function() {
         var statusType = Math.round(this.status / 100);
+
+        localStorage.setItem(arr, this.response);
 
         if (statusType === 2) {
             var arr = JSON.parse(this.response).data;
