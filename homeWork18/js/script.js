@@ -14,11 +14,8 @@
 */
 
 
-var regexp = /^[a-z]{3,10}$/ig.test('name');
-var regexp2 = /^[_]{1}/g.test('_surname');
-var regexp3 = /^[a-z_]{3,10}$/ig.test('surname');
+var regexp = /^[a-z]{3,10}_[a-z]{3,10}-\d{4}@[a-z\d-?\.?]{2,20}\.com$/i.test('name_surname-1234@gmail.com');
 
 console.log(regexp);
-console.log(regexp2);
-console.log(regexp3);
+
 
