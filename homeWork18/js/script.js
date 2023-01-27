@@ -40,11 +40,11 @@ var regexp = /^[a-z]{3,10}_[a-z]{3,10}(-[\d]{4})?@[a-z\d]{2,20}([- | \.])?\.com$
 
 
 function numberTelephone(telephone) {
-  return /^(\+?[375]{3}-?|[8\-?0]{2,3})([25]{2}|[29]{2}|[33]{2}|[44]{2}|[17]{2})-?(\d{7}|[1-9]{3}-?[1-9]{2}-?[1-9]{2})$/
+  return /^(\+?[375]{3}-?|[8\-?0]{2,3})([25]{2}|[29]{2}|[33]{2}|[44]{2}|[17]{2})-?([1-9]{7}|[1-9]{3}-?[1-9]{2}-?[1-9]{2})$/
   .test(telephone);
 }
 
-//console.log(numberTelephone('8033-6666666'));
+console.log(numberTelephone('8033-6666666'));
 
 
 /* Задание 3:
@@ -80,4 +80,4 @@ function numberVowels(text) {
     return number.length;
 }
 
-console.log(numberVowels('Решение не должно быть топорным'));
+//console.log(numberVowels('Решение не должно быть топорным'));
