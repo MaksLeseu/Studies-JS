@@ -39,15 +39,45 @@ var regexp = /^[a-z]{3,10}_[a-z]{3,10}(-[\d]{4})?@[a-z\d]{2,20}([- | \.])?\.com$
 */
 
 
-
-var telephone = /^(\+?[375]{3}-?|[8\-?0]{2,3})([25]{2}|[29]{2}|[33]{2}|[44]{2}|[17]{2})-?(\d{7}|[1-9]{3}-?[1-9]{2}-?[1-9]{2})$/
-.test('+375-25-777-77-77');
-
-//console.log(telephone);
-
 function numberTelephone(telephone) {
   return /^(\+?[375]{3}-?|[8\-?0]{2,3})([25]{2}|[29]{2}|[33]{2}|[44]{2}|[17]{2})-?(\d{7}|[1-9]{3}-?[1-9]{2}-?[1-9]{2})$/
   .test(telephone);
 }
 
-console.log(numberTelephone('8033-6666666'));
+//console.log(numberTelephone('8033-6666666'));
+
+
+/* Задание 3:
+    Переписать решение задачи с поиском гласных с использованием регулярного выражения. Протестировать ситуацию, когда
+    гласных в переданном тексте будет 0. По возможности придумать несколько вариантов решения. 
+
+
+function numberVowels(text) {
+  var letters = ['а', 'и', 'е', 'ё', 'о', 'у', 'ы', 'э', 'ю', 'я'];
+  var arr = [];
+  var array = text.split('');
+
+  for (var i = 0; i < letters.length; i++) {
+      
+      array.filter(function(item) {
+          if (item === letters[i]) {
+              arr.push(item);
+          }
+      });
+  }
+  return arr.length;
+}
+
+console.log(numberVowels('Решение не должно быть топорным'));
+*/
+
+function numberVowels(text) {
+  var number = text.match(/[аиеёоуыэюя]/ig); 
+
+  if (number == null) {
+    return 0;
+  } else 
+    return number.length;
+}
+
+console.log(numberVowels('Решение не должно быть топорным'));
