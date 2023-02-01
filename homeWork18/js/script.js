@@ -44,7 +44,7 @@ function numberTelephone(telephone) {
   .test(telephone);
 }
 
-console.log(numberTelephone('8033-6666666'));
+//console.log(numberTelephone('8033-6666666'));
 
 
 /* Задание 3:

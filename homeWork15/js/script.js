@@ -78,7 +78,7 @@ var Yparents = document.getElementById('y-parents');
 button.disabled = true;
 
 
-
+/*
 
 form.addEventListener('keyup', function(event) {
     var target = event.target;
@@ -91,7 +91,15 @@ form.addEventListener('keyup', function(event) {
             button.disabled = true;
         }
     }
-});
+}); */ 
+
+
+function btnDisable() {
+    return button.disabled = !(inputX.value.trim() && inputY.value.trim());
+}
+
+inputX.onkeyup = btnDisable;
+inputY.onkeyup = btnDisable;
 
 
 button.onclick = function() {
