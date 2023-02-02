@@ -37,15 +37,13 @@ const pets = [
 function funcTwo(arr, groupByFilter) {
     return arr.reduce((sum, current) => {
 
-        if (sum[current.type]) {
+        const property = current[groupByFilter];
 
-            Object.keys(sum).forEach(item => {
-                if (item === current.type) sum[item].push(current);
-            });
+        if (sum[property]) {
+            sum[property].push(current);
         } else {
-            sum[current.type] = [current];
+            sum[property] = [current];
         }
-
         return sum;
     }, {});
 }
