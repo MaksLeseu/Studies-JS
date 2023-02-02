@@ -24,36 +24,31 @@ func(cities);
 
 
 const pets = [
+    { type: 'Tirex', name: 'Maks' },
     { type: 'Dog', name: 'Spot' },
     { type: 'Cat', name: 'Tiger' },
     { type: 'Dog', name: 'Rover' },
-    { type: 'Dog', name: 'Fil' },
     { type: 'Cat', name: 'Leo' },
+    { type: 'Dog', name: 'Fil' },
+    { type: 'Cat', name: 'Alex' },
     { type: 'Tirex', name: 'Hulio' },
-    { type: 'Tirex', name: 'Maks' },
 ];
 
-function funcTwo(arr) {
+function funcTwo(arr, groupByFilter) {
     return arr.reduce((sum, current) => {
-        const array = [];
-        let arrayTwo = [];
-        if (sum[current.type]) {
-            arrayTwo.push(current);
-        } else {
-            sum[current.type] = array;
-            array.push(current);
-        }
-        if (typeof arrayTwo[0] !== 'undefined') {
 
-            for (let k in sum) {
-                if (k === arrayTwo[0].type){
-                    sum[k].push(arrayTwo[0]);
-                }
-            }
+        if (sum[current.type]) {
+
+            Object.keys(sum).forEach(item => {
+                if (item === current.type) sum[item].push(current);
+            });
+        } else {
+            sum[current.type] = [current];
         }
 
         return sum;
     }, {});
 }
 
-console.log(funcTwo(pets));
+console.log(funcTwo(pets, 'type'));
+
