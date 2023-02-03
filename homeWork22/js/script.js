@@ -14,6 +14,20 @@ let {a, b, ...obj} = {a: 1, b: 2, c: 3, d: 4};
   Имя пользователя получать уже из объекта.
   Проверить работу метода. Убедиться в уместном использовании способов задания переменной.
 */
+function funcWrapper (){
+    const name = prompt();
+
+    const newObject = {
+        name,
+        sayHi (name) {
+            alert(`Hi ${name}`);
+        }
+    };
+
+    return newObject.sayHi(name);
+}
+
+//funcWrapper();
 
 
 /* Задание 3:
@@ -24,11 +38,13 @@ let {a, b, ...obj} = {a: 1, b: 2, c: 3, d: 4};
    Валидацию опустить.
 */
 
-function func(x, y, z) {
+function func({a, b}, y, z) {
+    let sum = (a**b) * z;
 
+    return sum;
 }
 
-func({a: 2, b: 3}, y = 1, z = 1)
+//console.log(func(x = {a: 2, b: 3}, 1, z = 1));
 
 
 /* Задание 4:
@@ -117,19 +133,87 @@ const array = [
     {name: 'Fedor Ivanov', age: 42}
 ];
 
-function funcFilter(arr, name) {
-    arr.reduce((sum, current) => {
+function funcFilter(arr, name, age) {
+    return arr.reduce((sum, current) => {
 
-        const valueName = current[name];
+        if (current.name === name) sum[`Пользователь с именем Федор:`] = [current];
+        if (current.age === age) sum[`Пользователи младше 40:`] = [current];
 
-        if (valueName === 'Ivan Petrov') sum[valueName] = [current];
-
-
-        return console.log(sum);
+        return sum;
     }, {});
 }
 
-funcFilter(array, 'name');
+//console.log(funcFilter(array, 'Fedor Ivanov', 30));
+
+
+/* Задание 8:
+    Написать функцию, принимающую массив имен пользователей и возвращающую массив объектов вида:
+      [
+          {Пользователь 1: 'Вася'},
+          {Пользователь 2: 'Петя'}
+      ]
+ */
+
+function arrName(arr) {
+    return arr.reduce((sum, current, id) => {
+        const obj = {};
+
+        obj[`Пользователь ${++id}`] = current;
+        sum.push(obj);
+
+        return sum;
+    }, []);
+}
+
+//console.log(arrName(['Maks', 'Artes', 'Fil', 'Vera', 'Vital']));
+
+
+/* Задание 9:
+    Написать функцию, принимающую массив объектов и объединяющую их в один новый объект. Например:
+      [
+          {name: 'Vasya'},
+          {name: 'Piotr', age: 25},
+          {salary: '2000$'}
+      ]
+    необходимо преобразовать в
+      {
+          name: 'Piotr',
+          age: 25,
+          salary: '2000$'
+      }
+    Spread-оператор не использовать. Использовать перебирающий метод массивов. Старые объекты не должны преобразовываться.
+*/
+
+function unionNewObj(arr) {
+    return arr.reduce((sum, current) => {
+
+        Object.assign(sum, current);
+
+        return sum;
+    }, {});
+}
+
+/*console.log(unionNewObj([
+    {name: 'Vasya'},
+    {name: 'Piotr', age: 25},
+    {salary: '2000$'}
+]));
+
+/* Задание 10:
+    Переписать последнее задание с ООП на новый синтаксис. Проверить работоспособность всех методов.
+*/
+
+
+/* Задание 11:
+    Написать функцию-промис, которая принимает в себя 2 целых числа и выводит в консоль числа, входящие в диапазон,
+    каждую секунду. После окончания работы интервала в консоль должно вывестись последнее запомненное число.
+    Если в функцию первым параметром было передано бОльшее число - значения параметров следует поменять местами.
+    В случае, если в функцию были переданы не целые числа - промис должен быть завершен неуспешно.
+*/
+
+
+
+
 
 
 
