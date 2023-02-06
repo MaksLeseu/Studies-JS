@@ -1,4 +1,3 @@
-
 /* Задание 1:
   Имеется следующий объект - {a: 1, b: 2, c: 3, d: 4}. Необходимо сделать так, чтобы в переменные a и b записались
   соответствующие значения, а все, что осталось - в объект obj.
@@ -14,12 +13,12 @@ let {a, b, ...obj} = {a: 1, b: 2, c: 3, d: 4};
   Имя пользователя получать уже из объекта.
   Проверить работу метода. Убедиться в уместном использовании способов задания переменной.
 */
-function funcWrapper (){
+function funcWrapper() {
     const name = prompt();
 
     const newObject = {
         name,
-        sayHi (name) {
+        sayHi(name) {
             alert(`Hi ${name}`);
         }
     };
@@ -39,7 +38,7 @@ function funcWrapper (){
 */
 
 function func({a, b}, y, z) {
-    let sum = (a**b) * z;
+    let sum = (a ** b) * z;
 
     return sum;
 }
@@ -133,17 +132,22 @@ const array = [
     {name: 'Fedor Ivanov', age: 42}
 ];
 
-function funcFilter(arr, name, age) {
+function funcFilter(arr, name) {
+    let err = [];
     return arr.reduce((sum, current) => {
 
-        if (current.name === name) sum[`Пользователь с именем Федор:`] = [current];
-        if (current.age === age) sum[`Пользователи младше 40:`] = [current];
+        if (current.name === name) sum[`Пользователь с именем Федор`] = [current];
+
+        if (current.age < 40) {
+            sum[`Пользователи младше 40:`] = err;
+            err.push(current);
+        }
 
         return sum;
     }, {});
 }
 
-//console.log(funcFilter(array, 'Fedor Ivanov', 30));
+//console.log(funcFilter(array, 'Fedor Ivanov'));
 
 
 /* Задание 8:
@@ -201,8 +205,105 @@ function unionNewObj(arr) {
 
 /* Задание 10:
     Переписать последнее задание с ООП на новый синтаксис. Проверить работоспособность всех методов.
-*/
 
+function Cat(name) {
+  this._foodAmount = 50;
+  this.name = name;
+
+  this._self = this;
+}
+
+Cat.prototype._formatFoodAmount = function() {
+  return this._self._foodAmount + 'гр';
+};
+
+Cat.prototype.dailyNorm = function(amount) {
+  if (arguments.length == 0) return this._self._formatFoodAmount();
+
+  if (amount < 50 || amount > 500) {
+    return console.log('Mistake!');
+  }
+
+  this._foodAmount = amount;
+};
+
+Cat.prototype.feed = function() {
+  console.log('Насыпаем в миску' + ' ' + this._self.dailyNorm() + ' ' + 'корма');
+};
+
+// ----------------------------- Наследование класса ----------------------------- //
+
+
+function Animal() {
+  Cat.call(this);
+}
+
+Animal.prototype = Object.create(Cat.prototype);
+Animal.prototype.constructor = Animal;
+
+Animal.prototype.feed = function() {
+  Cat.prototype.feed.call(this);
+
+  console.log('Кот доволен ^_^');
+  return this;
+};
+
+Animal.prototype.stroke = function() {
+  console.log('Гладим кота.');
+  return this;
+};
+ */
+
+
+class Cat {
+    constructor(name) {
+        this._foodAmount = 50;
+        this.name = name;
+
+        this._self = this;
+    }
+    _formatFoodAmount() {
+        return `${this._self._foodAmount} гр`;
+    }
+    dailyNorm(amount) {
+        if (arguments.length == 0) return this._self._formatFoodAmount();
+
+        if (amount < 50 || amount > 500) {
+            return console.log('Mistake!');
+        }
+
+        this._foodAmount = amount;
+    }
+    feed() {
+        console.log(`Насыпаем в миску ${this._self.dailyNorm()} корма`);
+    }
+}
+/*
+let cat = new Cat();
+
+cat._formatFoodAmount();
+cat.dailyNorm(50);
+cat.feed(); */
+
+// ----------------------------- Наследование класса ----------------------------- //
+
+class Animal extends Cat {
+    constructor() {
+        super();
+    }
+    feed() {
+        super.feed();
+        console.log('Кот доволен ^_^');
+    }
+    stroke() {
+        console.log('Гладим кота.');
+    }
+}
+/*
+let animal = new Animal();
+
+animal.feed();
+animal.stroke(); */
 
 /* Задание 11:
     Написать функцию-промис, которая принимает в себя 2 целых числа и выводит в консоль числа, входящие в диапазон,
@@ -211,7 +312,32 @@ function unionNewObj(arr) {
     В случае, если в функцию были переданы не целые числа - промис должен быть завершен неуспешно.
 */
 
+function createFirstPromise(number1, number2) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('Промис запущен');
 
+            if(Number.isInteger(number1) === true && Number.isInteger(number2) === true) {
+                console.log('Промис решен');
+
+                let timerId = setInterval(() =>{
+                    console.log(number1);
+                    number1++;
+                    if (number1 > number2)  clearInterval(timerId);
+                }, 1000)
+
+                resolve(number1, number2);
+            }
+
+            reject('не целое число');
+        }, 1000)
+    });
+}
+
+createFirstPromise(5, 10)
+    //.then((number1, number2))
+    .catch(erorr => console.log(`Ошибка промиса: ${erorr}`))
+    .finally(() => console.log('Промис завершил работу!'));
 
 
 
